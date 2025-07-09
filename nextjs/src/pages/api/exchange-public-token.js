@@ -1,5 +1,5 @@
-import { withIronSessionApiRoute } from 'iron-session/next';
-import { plaidClient, sessionOptions } from '../../lib/plaid';
+import { withIronSessionApiRoute } from "iron-session/next";
+import { plaidClient, sessionOptions } from "../../lib/plaid";
 
 export default withIronSessionApiRoute(exchangePublicToken, sessionOptions);
 
@@ -9,6 +9,7 @@ async function exchangePublicToken(req, res) {
   });
 
   req.session.access_token = exchangeResponse.data.access_token;
+  console.log("Access token:", req.session.access_token);
   await req.session.save();
   res.send({ ok: true });
 }
